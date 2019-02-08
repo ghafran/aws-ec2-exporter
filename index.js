@@ -11,15 +11,15 @@ const csvWriter = createCsvWriter({
     path: __dirname + '/instances.csv',
     header: [
         {id: 'InstanceId', title: ' InstanceId'},
+        {id: 'Name', title: 'Name'},
+        {id: 'Deployment', title: 'Deployment'},
+        {id: 'InstanceGroup', title: 'InstanceGroup'},
         {id: 'InstanceType', title: 'InstanceType'},
         {id: 'AZ', title: 'Placement'},
         {id: 'PrivateIpAddress', title: 'PrivateIpAddress'},
         {id: 'VpcId', title: 'VpcId'},
         {id: 'SubnetId', title: 'SubnetId'},
-        {id: 'SecurityGroups', title: 'SecurityGroups'},
-        {id: 'Name', title: 'Name'},
-        {id: 'Deployment', title: 'Deployment'},
-        {id: 'InstanceGroup', title: 'InstanceGroup'}
+        {id: 'SecurityGroups', title: 'SecurityGroups'}
     ]
 });
 
@@ -36,10 +36,11 @@ ec2.describeInstances((err, data) => {
                 var instance_group = _.find(instance.Tags, { Key: 'instance_group'});
 
                 records.push({
+                    VpcId: instance.VpcId,
                     InstanceId: instance.InstanceId,
                     InstanceType: instance.InstanceType,
                     AZ: instance.Placement.AvailabilityZone,
-                    VpcId: instance.VpcId,
+                    PrivateIpAddress: instance.PrivateIpAddress,
                     SubnetId: instance.SubnetId,
                     SecurityGroups: _.map(instance.SecurityGroups, 'GroupName').join(', '),
                     Name: name ? name.Value : '',
