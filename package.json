@@ -1,0 +1,25 @@
+{
+  "name": "aws-ec2-exporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghafran/aws-ec2-exporter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ghafran/aws-ec2-exporter/issues"
+  },
+  "homepage": "https://github.com/ghafran/aws-ec2-exporter#readme",
+  "dependencies": {
+    "aws-sdk": "^2.399.0",
+    "bluebird": "^3.5.3",
+    "csv-writer": "^1.2.0",
+    "lodash": "^4.17.11"
+  }
+}
